@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0f1226"><meta name="description" content="A bedtime story and soft sounds made on your own machine with open models."><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><title>Sloth Hour</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <div class="moon off" id="moon" aria-hidden="true"></div>
+  <h1>Sloth Hour</h1>
+  <p class="sub">A bedtime story and soft sounds, made on your own machine. No internet needed.</p>
+
+  <section class="panel" aria-label="Story">
+    <div class="f" style="margin-bottom:14px"><span class="lbl">What should tonight's story be about?</span>
+      <div class="chips" id="themes"></div></div>
+    <div class="row">
+      <div class="f"><label for="model">Local model</label><select id="model"><option>llama3.2</option></select></div>
+      <div class="f"><label for="len">Length</label>
+        <select id="len"><option value="250">Short (about 2 min)</option><option value="450" selected>Medium (about 4 min)</option><option value="800">Long (about 7 min)</option></select></div>
+    </div>
+    <div class="f" style="margin-top:14px"><label for="url">Ollama address</label><input type="text" id="url" value="http://localhost:11434" spellcheck="false"></div>
+    <label class="check" style="margin-top:14px"><input type="checkbox" id="speak" checked> Read the story aloud when it is ready</label>
+    <div class="status"><span class="dot" id="dot"></span><span id="stat">Looking for Ollama...</span></div>
+    <div class="hint" id="hint">Ollama wasn’t found, so this is a sample story. To get a fresh story every night, install Ollama, run <b>ollama pull llama3.2</b>, and reload. On a hosted copy of this page, allow its address first (see the README, step “Use the hosted page”).</div>
+    <button class="go" id="go">Tell me a story</button>
+  </section>
+
+  <section class="panel" aria-label="Sounds">
+    <div class="f"><span class="lbl">Background sound</span>
+      <div class="chips" id="sounds"></div></div>
+    <div class="row" style="margin-top:14px">
+      <div class="f"><label for="vol">Volume</label><input type="range" id="vol" min="0" max="100" value="45"></div>
+      <div class="f"><label for="sleep">Fade out and stop after</label>
+        <select id="sleep"><option value="0">Never</option><option value="15">15 minutes</option><option value="30" selected>30 minutes</option><option value="60">1 hour</option></select>
+        <span class="lbl" id="count"></span></div>
+    </div>
+  </section>
+
+  <article id="story" aria-live="polite"></article>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
